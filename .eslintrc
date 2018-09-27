@@ -16,6 +16,7 @@
         "vars": "local",
         "args": "none"
       }
-    ]
+    ],
+    "react/jsx-filename-extension": 0
   }
 }
