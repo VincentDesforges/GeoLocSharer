@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {createStackNavigator} from 'react-navigation';
+import {createSwitchNavigator} from 'react-navigation';
 
 import ReportView from './containers/ReportView/ReportView';
 import ListReports from './containers/ListReports/ListReports';
@@ -14,7 +14,7 @@ export default class App extends Component<Props> {
   }
 }
 
-const AppStackNavigator = createStackNavigator({
+const AppStackNavigator = createSwitchNavigator({
   ListReports: ListReports,
   ReportView: ReportView
 });
