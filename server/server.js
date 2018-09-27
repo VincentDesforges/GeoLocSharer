@@ -22,10 +22,10 @@ app.post('/report', (req, res) => {
       }
     });
 
-    report.save().then(doc => {
+    report.save().then((doc) => {
       // console.log('Saved Report', doc);
       res.send(doc);
-    }, err => {
+    }, (err) => {
       // console.log('Unable to save report', err);
       res.status(400).send(err);
     });
@@ -35,11 +35,11 @@ app.post('/report', (req, res) => {
 // GET '/report/:lat/:lng'
 // At the moment getting everything from the db
 app.get('/report/:lat/:lng', (req, res) => {
-  Report.find().then(reports => {
-    res.send({reports});
-  }, err => {
+  Report.find().then((reports) => {
+    res.send({ reports });
+  }, (err) => {
     res.status(400).send(err);
-  })
+  });
 });
 
 
