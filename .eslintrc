@@ -6,7 +6,9 @@
   "env": {
     "node": true,
     "browser": true,
-    "es6": true
+    "es6": true,
+    "mocha": true,
+    "mongo": true
   },
   "rules": {
     "comma-dangle": ["warn", "never"],
@@ -17,6 +19,9 @@
         "args": "none"
       }
     ],
+    "arrow-parens": [ "error", "as-needed", {
+      "requireForBlockBody": true
+    }],
     "react/jsx-filename-extension": 0
   }
 }
