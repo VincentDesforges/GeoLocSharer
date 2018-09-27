@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 
 import FetchLocation from '../../components/FetchLocation/FetchLocation';
 
 class ReportView extends Component {
   state = {
     title: '',
-    formValid: true
+    formValid: true,
+    errorMessage: null
   }
 
   getUserLocationHandler = () => {
@@ -15,7 +16,32 @@ class ReportView extends Component {
       this.setState({formValid: false})
     } else {
       navigator.geolocation.getCurrentPosition(position => {
-        console.log(position);
+        // console.log(position);
+
+        const jsonBody = {
+          "title": this.state.title,
+          "position": {
+            coordinates: [position.coords.longitude, position.coords.latitude]
+          }
+        };
+        // console.log('jsonBody', jsonBody);
+
+        fetch('http://localhost:3000/report', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(jsonBody),
+        })
+        .then(res => res.json())
+        .then(resJson => console.log(resJson))
+        .catch(err => {
+          console.log(err);
+          this.setState({
+            errorMessage: err
+          });
+        })
+
         this.props.navigation.navigate('ListReports')
       }, err => console.log(err));
     }
@@ -39,6 +65,8 @@ class ReportView extends Component {
           onChangeText={this.recordChangeHandler}
           />
         <FetchLocation onGetLocation={this.getUserLocationHandler} />
+        <Button title="Return to Reports"
+            onPress={() => this.props.navigation.navigate('ListReports')} />
       </View>
     );
   }
