@@ -1,6 +1,20 @@
 const mongoose = require('mongoose');
 
-const Report = mongoose.model('Report', {
+const { Schema } = mongoose;
+
+const GeoSchema = new Schema({
+  type: {
+    type: String,
+    default: 'Point'
+  },
+  coordinates: {
+    type: [Number],
+    index: '2dsphere',
+    required: true
+  }
+});
+
+const ReportSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -12,10 +26,12 @@ const Report = mongoose.model('Report', {
     default: Date.now()
   },
   position: {
-    type: Map,
-    of: Number,
+    type: GeoSchema,
     required: true
   }
+
 });
+
+const Report = mongoose.model('Report', ReportSchema);
 
 module.exports = { Report };
