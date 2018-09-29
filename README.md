@@ -23,6 +23,18 @@ In your simulator I suggest setting coordinates in the general Brussels region (
 npm test
 ```
 
+You can also create your own reports via Postman or other using a post request at: **localhost:3000/report**
+
+with the following body structure:
+```
+{
+  "title": "Get me somewhere",
+  "position": {
+    "coordinates": [4.402978, 50.874646]
+  }
+}
+```
+
 ## Development
 Before launching the app please ensure that you have a MongoDB connection running on localhost:27017
 ```
