@@ -12,6 +12,17 @@ npm install
 cd ..
 ```
 
+## Testing and Seeding Data
+When running the test, some data is automatially generated:
+* Quartier Leopold 50.842968, 4.386139
+* Grand-Place 50.847566, 4.352381
+* Charleroi 50.414132, 4.444418
+
+In your simulator I suggest setting coordinates in the general Brussels region (e.g. Evere 50.874646, 4.402978).
+```
+npm test
+```
+
 ## Development
 Before launching the app please ensure that you have a MongoDB connection running on localhost:27017
 ```
